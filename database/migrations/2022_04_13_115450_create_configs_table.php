@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserRoleFieldToUsersTable extends Migration
+class CreateConfigsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddUserRoleFieldToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('user_role')->nullable();
+        Schema::create('configs', function (Blueprint $table) {
+            $table->id();
+            $table->string('consumer_secret');
+            $table->string('consumer_key');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddUserRoleFieldToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('configs');
     }
 }

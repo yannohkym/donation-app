@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -31,6 +32,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/admin',[App\Http\Controllers\AdministratorController::class,'index'])->name('admin_index');
     Route::get('/admin/donors',[App\Http\Controllers\AdministratorController::class,'donors'])->name('admin_donors');
     Route::get('/admin/users',[App\Http\Controllers\AdministratorController::class,'users'])->name('admin_users');
+    Route::match(['get','post'],'/admin/configuration',[App\Http\Controllers\AdministratorController::class,'config'])->name('configuration');
+   // Route::get('/admin/fillform',[App\Http\Controllers\AdministratorController::class,'show'])->name('fillform');
 });
 
 
