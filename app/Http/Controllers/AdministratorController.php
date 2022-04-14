@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Config;
 use App\Models\Donation;
 use App\Models\Donor;
+use App\Models\EmailNotification;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -43,6 +44,15 @@ class AdministratorController extends Controller
         return view('admin.users',
             [
                 'users' => $users
+            ]
+        );
+    }
+    public function notifications()
+    {
+        $notifications = EmailNotification::all();
+        return view('admin.notifications',
+            [
+                'notifications' => $notifications
             ]
         );
     }
